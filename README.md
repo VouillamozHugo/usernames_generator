@@ -9,55 +9,57 @@ How to use :
 python username_generator.py USERNAME.txt OUTPUT.txt 
 
 Example of output using username 'john doe' => 
-johndoe 
+johndoe
 john.doe
 john doe
+doejohn
+doe.john
+doe john
 jdoe
 j.doe
 j doe
-j.d
-j d
-jd
-johnd
-john.d
-john doe
-johndoe
-doejohn
-doe.john
-doe john
 djohn
 d.john
 d john
+dj
 d.j
 d j
-dj
-doej
-doe.j
-doe john
-doejohn
-johndoe
-john.doe
-john doe
-JDoe
-J.Doe
-J Doe
-J.D
-J D
-JD
-JohnD
-John.D
-John Doe
+jd
+j.d
+j d
+JOHNDOE
+JOHN.DOE
+JOHN DOE
+DOEJOHN
+DOE.JOHN
+DOE JOHN
 JohnDoe
-doejohn
-doe.john
-doe john
-DJohn
-D.John
-D John
+John.Doe
+John Doe
+DoeJohn
+Doe.John
+Doe John
+DJ
 D.J
 D J
-DJ
-DoeJ
-Doe.J
-Doe John
-DoeJohn
+JD
+J.D
+J D
+JOHNdoe
+JOHN.doe
+JOHN doe
+DOEjohn
+DOE.john
+DOE john
+Johndoe
+John.doe
+John doe
+Doejohn
+Doe.john
+Doe john
+Dj
+D.j
+D j
+Jd
+J.d
+J d
