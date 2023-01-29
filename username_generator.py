@@ -3,6 +3,10 @@ import sys, time
 
 def getUsername():
     print("Usernames file found \n\n" + 40 * "#" + "\n#  Start generating username variation  #\n" + 40 * "#" + "\n")
+    createUpperCase = ''
+    while createUpperCase not in ['y', 'Y', 'n', 'N']:
+        createUpperCase = input("Create upper case variation (add 36 variation per username) ? [Y/N]")
+
     with open(usernameFile, 'r') as i:
         lines = i.readlines()
         with open(fileToWrite, 'w') as f:
@@ -14,42 +18,43 @@ def getUsername():
                     tmp = name.split()
                     fname = tmp[0].lower()
                     lname = tmp[1].lower()
-                    letterFirstname = fname[0]
-                    letterLastname = lname[0]
+                    letterf = fname[0]
+                    letterl = lname[0]
 
-                    generateVariation(fname, lname, letterFirstname, letterLastname)
-                    generateVariation(lname, fname, letterLastname, letterFirstname)
+                    # All variations in lower cases
+                    generation(fname, lname)
+                    generation(lname, fname)
+                    generation(letterf, lname)
+                    generation(letterl, fname)
+                    generation(letterl, letterf)
+                    generation(letterf, letterl)
 
-                    letterFirstname = letterFirstname.upper()
-                    letterLastname = letterLastname.upper()
-                    generateVariation(fname, lname, letterFirstname, letterLastname)
-                    generateVariation(lname, fname, letterLastname, letterFirstname)
+                    # Create all upper case variation if the user want it
+                    if createUpperCase in ['y', 'Y']:
+                        generation(fname.upper(), lname.upper())
+                        generation(lname.upper(), fname.upper())
+                        generation(fname.capitalize(), lname.capitalize())
+                        generation(lname.capitalize(), fname.capitalize())
+                        generation(letterl.upper(), letterf.upper())
+                        generation(letterf.upper(), letterl.upper())
 
+                        # Same as before but only the first part the username will be capitalized
+                        generation(fname.upper(), lname)
+                        generation(lname.upper(), fname)
+                        generation(fname.capitalize(), lname)
+                        generation(lname.capitalize(), fname)
+                        generation(letterl.upper(), letterf)
+                        generation(letterf.upper(), letterl)
             except Exception as e:
                 print("An error occured while reading the usernames file\n"
                       "Be sure that all username are in the following structure => firstname lastname ", flush=True)
 
 
-def generateVariation(fname, lname, letterFirstname, letterLastname):
+def generation(fname, lname):
     mutations = []
-
     mutations.append(fname + lname + "\n")
     mutations.append(fname + "." + lname + "\n")
     mutations.append(fname + " " + lname + "\n")
-
-    fname = fname[1:]
-    lname = lname[1:]
-
-    mutations.append(letterFirstname + letterLastname + lname + "\n")
-    mutations.append(letterFirstname + "." + letterLastname + lname + "\n")
-    mutations.append(letterFirstname + " " + letterLastname + lname + "\n")
-    mutations.append(letterFirstname + "." + letterLastname + "\n")
-    mutations.append(letterFirstname + " " + letterLastname + "\n")
-    mutations.append(letterFirstname + letterLastname + "\n")
-    mutations.append(letterFirstname + fname + letterLastname + "\n")
-    mutations.append(letterFirstname + fname + "." + letterLastname + "\n")
-    mutations.append(letterFirstname + fname + " " + letterLastname + lname + "\n")
-    mutations.append(letterFirstname + fname + letterLastname + lname + "\n")
     with open(fileToWrite, 'a') as f:
         f.writelines(mutations)
 
@@ -60,10 +65,10 @@ if __name__ == '__main__':
         usernameFile = sys.argv[1]
         fileToWrite = sys.argv[2]
     except:
-        print("\nTo use the Username_builder.py you need to give the following arguments :\n" 
-              "- Path to the list of username \n" 
-              "- Name of the file for output \n" 
-              "\n" 
+        print("\nTo use the Username_builder.py you need to give the following arguments :\n"
+              "- Path to the list of username \n"
+              "- Name of the file for output \n"
+              "\n"
               "Example of use : python username_builder.py username.txt outputWordlist.txt \n")
         sys.exit()
     getUsername()
