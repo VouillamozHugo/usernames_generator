@@ -8,22 +8,28 @@ def getUsername():
     with open(usernameFile, 'r') as i:
         lines = i.readlines()
         for name in lines:
-            tmp = name.split()
-            fname = tmp[0].lower()
-            lname = tmp[1].lower()
-            letterFirstname = fname[0]
-            letterLastname = lname[0]
+            try:
+                tmp = name.split()
+                fname = tmp[0].lower()
+                lname = tmp[1].lower()
+                letterFirstname = fname[0]
+                letterLastname = lname[0]
 
-            print("\r/", flush=False, end='')
-            generateVariation(fname,lname,letterFirstname,letterLastname)
-            generateVariation(lname,fname,letterLastname,letterFirstname)
+                print("\r/", flush=False, end='')
+                generateVariation(fname,lname,letterFirstname,letterLastname)
+                generateVariation(lname,fname,letterLastname,letterFirstname)
 
-            letterFirstname = letterFirstname.upper()
-            letterLastname = letterLastname.upper()
-            print("\r\\", flush=False, end='')
-            generateVariation(fname,lname,letterFirstname,letterLastname)
-            generateVariation(lname,fname,letterLastname,letterFirstname)
-            print("\r/", flush=False, end='')
+                letterFirstname = letterFirstname.upper()
+                letterLastname = letterLastname.upper()
+                print("\r\\", flush=False, end='')
+                generateVariation(fname,lname,letterFirstname,letterLastname)
+                generateVariation(lname,fname,letterLastname,letterFirstname)
+                print("\r/", flush=False, end='')
+            except:
+                print("And error occured while reading the usernames file\n"
+                      "Be sure that all username are in the following structure => firstname lastname ")
+                sys.exit()
+
 
 
 
