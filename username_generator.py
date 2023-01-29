@@ -24,10 +24,6 @@ def getUsername():
                     letterLastname = letterLastname.upper()
                     generateVariation(fname, lname, letterFirstname, letterLastname)
                     generateVariation(lname, fname, letterLastname, letterFirstname)
-                    fname.upper()
-                    lname.upper()
-                    generateVariation(fname, lname, letterFirstname, letterLastname)
-                    generateVariation(lname, fname, letterLastname, letterFirstname)
 
             except Exception as e:
                 print("An error occured while reading the usernames file\n"
