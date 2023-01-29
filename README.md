@@ -1,5 +1,6 @@
 # usernames_generator
-Python script to generate username variation based on firstname lastname
+Python script to generate username variation based on firstname lastname.
+
 Using a wordlist that contain firstname and lastname the script will generate 52 variation using lower and upper case 
 
 each line in the username file should be as follow => firstname lastname 
