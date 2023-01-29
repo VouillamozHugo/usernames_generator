@@ -1,34 +1,32 @@
-import logging
 import sys
 
 def getUsername():
 
     print("Usernames file found \n"
-          "Start generating username variation")
+          "Start generating username variation\n###############")
     with open(usernameFile, 'r') as i:
         lines = i.readlines()
         for name in lines:
             try:
-                tmp = name.split()
-                fname = tmp[0].lower()
-                lname = tmp[1].lower()
-                letterFirstname = fname[0]
-                letterLastname = lname[0]
+                if name.strip():
+                    tmp = name.split()
+                    fname = tmp[0].lower()
+                    lname = tmp[1].lower()
+                    letterFirstname = fname[0]
+                    letterLastname = lname[0]
 
-                print("\r/", flush=False, end='')
-                generateVariation(fname,lname,letterFirstname,letterLastname)
-                generateVariation(lname,fname,letterLastname,letterFirstname)
+                    generateVariation(fname,lname,letterFirstname,letterLastname)
+                    generateVariation(lname,fname,letterLastname,letterFirstname)
 
-                letterFirstname = letterFirstname.upper()
-                letterLastname = letterLastname.upper()
-                print("\r\\", flush=False, end='')
-                generateVariation(fname,lname,letterFirstname,letterLastname)
-                generateVariation(lname,fname,letterLastname,letterFirstname)
-                print("\r/", flush=False, end='')
-            except:
-                print("And error occured while reading the usernames file\n"
-                      "Be sure that all username are in the following structure => firstname lastname ")
-                sys.exit()
+                    letterFirstname = letterFirstname.upper()
+                    letterLastname = letterLastname.upper()
+                    generateVariation(fname,lname,letterFirstname,letterLastname)
+                    generateVariation(lname,fname,letterLastname,letterFirstname)
+
+            except Exception as e:
+                print("An error occured while reading the usernames file\n"
+                      "Be sure that all username are in the following structure => firstname lastname ", flush=True)
+
 
 
 
